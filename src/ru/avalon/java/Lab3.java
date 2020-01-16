@@ -1,8 +1,12 @@
 package ru.avalon.java;
 
+import java.io.File;
 import ru.avalon.java.console.ConsoleUI;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import ru.avalon.java.actions.FileCopyAction;
+import ru.avalon.java.actions.FileMoveAction;
 
 /**
  * Лабораторная работа №3
@@ -43,18 +47,54 @@ public class Lab3 extends ConsoleUI<Commands> {
                 /*
                  * TODO №6 Обработайте команду copy
                  */
+                FileCopyAction fCopy = new FileCopyAction();
+                fCopy.start();
                 break;
             case move:
                 /*
                  * TODO №7 Обработайте команду move
                  */
+                FileMoveAction fMove = new FileMoveAction();
+                fMove.start();
                 break;
             case exit:
                 close();
                 break;
+            
                 /*
                  * TODO №9 Обработайте необработанные команды
                  */
+                case del:
+            {
+                File filedel = new File("c:/sk/1/fordel.txt");
+                try
+                {
+                    Files.delete(filedel.toPath());
+                }
+                catch (Exception e)
+                {
+            
+                }
+                
+            }
+            break;
+            case undo:
+            {
+                File undomove = new File("c:/sk/2/formove.txt");
+                File undomove2 = new File("c:/sk/1/formove.txt");
+                try
+                {
+                    if (Files.exists(undomove.toPath()))
+                    {
+                        Files.move(undomove.toPath(), undomove2.toPath());
+                    }
+                }
+                catch (Exception e)
+                {
+            
+                }
+            }
+                break;
         }
     }
     

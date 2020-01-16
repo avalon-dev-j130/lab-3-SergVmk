@@ -9,6 +9,7 @@ package ru.avalon.java.actions;
  * основной поток исполнения.
  */
 public interface Action extends Runnable, AutoCloseable {
+    
     /**
      * Запускает потоковый объект на исполнение в отдельном
      * потоке исполнения.
@@ -17,7 +18,8 @@ public interface Action extends Runnable, AutoCloseable {
         /*
          * TODO №1 Реализуйте метод start интерфейса Action.
          */
-        throw new UnsupportedOperationException("Not implemented yet!");
+        Thread MyThread = new Thread(this, "Поток");   
+        MyThread.start();
     }
     
 }
